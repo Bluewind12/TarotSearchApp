@@ -1,14 +1,15 @@
 package com.bluewind.tarotsearchapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.bluewind.tarotsearchapp.databinding.MainFragmentBinding
+import com.bluewind.tarotsearchapp.enum.TarotEnum
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainFragment : Fragment() {
     companion object {
@@ -20,39 +21,18 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val tarotItems = mutableListOf<Tarot>()
 
-        val tarotItems = listOf(
-            Tarot(
-                title = "サンタ",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background)
-            ),
-            Tarot(
-                title = "ツリー",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background)
-            ),
-            Tarot(
-                title = "トナカイ",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background)
-            ),
-            Tarot(
-                title = "プレゼント",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background)
-            ),
-            Tarot(
-                title = "ケーキ",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)
-            ),
-            Tarot(
-                title = "チキン",
-                numTitle = "1",
-                drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background)
+
+        for (tarot in TarotEnum.values()) {
+            val tmpTarot = Tarot(
+                title = tarot.title,
+                num = tarot.num,
+                numTitle = tarot.numString,
+                drawable = ResourcesCompat.getDrawable(resources, tarot.drawable, null)
             )
-        )
+            tarotItems.add(tmpTarot)
+        }
 
         val binding = MainFragmentBinding.inflate(
             inflater,
@@ -68,7 +48,10 @@ class MainFragment : Fragment() {
             TabLayoutMediator(
                 tabLayout,
                 viewpager,
-                TabLayoutMediator.TabConfigurationStrategy { tab, position -> }
+                TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                    tab.text = tarotItems[position].numTitle.toString()
+                    Log.d("-----------------" , tab.text.toString())
+                }
             ).attach()
         }
 
