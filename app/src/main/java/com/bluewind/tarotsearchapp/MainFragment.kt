@@ -29,6 +29,8 @@ class MainFragment : Fragment() {
                 title = tarot.title,
                 num = tarot.num,
                 numTitle = tarot.numString,
+                uprightInfo = "正位置の意味：表示予定",
+                reverseInfo = "逆位置の意味：表示予定",
                 drawable = ResourcesCompat.getDrawable(resources, tarot.drawable, null)
             )
             tarotItems.add(tmpTarot)
