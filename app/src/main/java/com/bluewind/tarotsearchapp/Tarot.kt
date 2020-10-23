@@ -13,49 +13,48 @@ data class Tarot(
     val title: String,
     val num: Int,
     val numTitle: String,
+    val uprightInfo: String,
+    val reverseInfo: String,
     val drawable: Drawable?
 ) {
-    fun uprightInfo(title: String) {
+    fun uprightInfo(tarot: Tarot) {
         val view: View = LayoutInflater.from(MyApplication.appContext)
             .inflate(R.layout.tarot_info_modal_upright, null)
 
-        view.uprightTitleText.text = title
-        view.uprightNumText.text = "000"
-        view.uprightInfoText.text = "TEST"
+        val titleTextView =  view.uprightTitleText 
+        val numTextView =  view.uprightNumText
+        val infoTextView = view.uprightInfoText
+        val positionTextView = view.uprightPositionText
 
-        val closeButton: Button = view.uprightCloseButton as Button
-        closeButton.text = "閉じる"
+        titleTextView.text = tarot.title
+        numTextView.text = tarot.numTitle
+        infoTextView.text = tarot.uprightInfo
+        positionTextView.text = "正位置"
 
 
         val mDialog = AlertDialog.Builder(MyApplication.appActivity)
             .setView(view)
             .create()
-
-        closeButton.setOnClickListener {
-            mDialog.dismiss()
-        }
 
         mDialog.show()
     }
-    fun reverseInfo(title: String) {
+    fun reverseInfo(tarot: Tarot) {
         val view: View = LayoutInflater.from(MyApplication.appContext)
             .inflate(R.layout.tarot_info_modal_reverse, null)
 
-        view.reverseTitleText.text = title
-        view.reverseNumText.text = "000"
-        view.reverseInfoText.text = "TEST"
-
-        val closeButton: Button = view.reverseCloseButton as Button
-        closeButton.text = "閉じる"
-
+        val titleTextView =  view.reverseTitleText 
+        val numTextView =  view.reverseNumText
+        val infoTextView = view.reverseInfoText
+        val positionTextView = view.reversePositionText
+        
+        titleTextView.text = tarot.title
+        numTextView.text = tarot.numTitle
+        infoTextView.text = tarot.reverseInfo
+        positionTextView.text = "逆位置"
 
         val mDialog = AlertDialog.Builder(MyApplication.appActivity)
             .setView(view)
             .create()
-
-        closeButton.setOnClickListener {
-            mDialog.dismiss()
-        }
 
         mDialog.show()
     }
