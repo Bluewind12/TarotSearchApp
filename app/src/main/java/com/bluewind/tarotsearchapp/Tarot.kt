@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import kotlinx.android.synthetic.main.tarot_info_modal_reverse.view.*
 import kotlinx.android.synthetic.main.tarot_info_modal_upright.view.*
 
@@ -17,12 +16,19 @@ data class Tarot(
     val reverseInfo: String,
     val drawable: Drawable?
 ) {
-    fun uprightInfo(tarot: Tarot) {
+    fun showModal(tarot: Tarot) {
+        when (MyApplication.deviceRotate) {
+            0 -> uprightInfo(tarot)
+            180 -> reverseInfo(tarot)
+        }
+    }
+
+    private fun uprightInfo(tarot: Tarot) {
         val view: View = LayoutInflater.from(MyApplication.appContext)
             .inflate(R.layout.tarot_info_modal_upright, null)
 
-        val titleTextView =  view.uprightTitleText 
-        val numTextView =  view.uprightNumText
+        val titleTextView = view.uprightTitleText
+        val numTextView = view.uprightNumText
         val infoTextView = view.uprightInfoText
         val positionTextView = view.uprightPositionText
 
@@ -38,15 +44,16 @@ data class Tarot(
 
         mDialog.show()
     }
-    fun reverseInfo(tarot: Tarot) {
+
+    private fun reverseInfo(tarot: Tarot) {
         val view: View = LayoutInflater.from(MyApplication.appContext)
             .inflate(R.layout.tarot_info_modal_reverse, null)
 
-        val titleTextView =  view.reverseTitleText 
-        val numTextView =  view.reverseNumText
+        val titleTextView = view.reverseTitleText
+        val numTextView = view.reverseNumText
         val infoTextView = view.reverseInfoText
         val positionTextView = view.reversePositionText
-        
+
         titleTextView.text = tarot.title
         numTextView.text = tarot.numTitle
         infoTextView.text = tarot.reverseInfo
