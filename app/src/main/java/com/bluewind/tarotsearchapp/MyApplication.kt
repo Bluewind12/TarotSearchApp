@@ -16,14 +16,23 @@ class MyApplication : Application() {
 
     companion object {
         private var context: Context? = null
-        private var mainActivity: MainActivity? = null
         val appContext: Context?
             get() = context
 
+        private var mainActivity: MainActivity? = null
         var appActivity: MainActivity?
             get() = mainActivity
             set(value) {
                 mainActivity = value
+            }
+
+        private var rotate: Int = 0
+        var deviceRotate: Int
+            get() = rotate
+            set(value) {
+                when (value) {
+                    0, 180 -> rotate = value
+                }
             }
     }
 }
