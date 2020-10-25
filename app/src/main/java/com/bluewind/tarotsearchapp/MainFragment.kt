@@ -1,7 +1,6 @@
 package com.bluewind.tarotsearchapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +28,8 @@ class MainFragment : Fragment() {
                 title = tarot.title,
                 num = tarot.num,
                 numTitle = tarot.numString,
-                uprightInfo = "正位置の意味：表示予定",
-                reverseInfo = "逆位置の意味：表示予定",
+                uprightInfo = tarot.info,
+                reverseInfo = tarot.backInfo,
                 drawable = ResourcesCompat.getDrawable(resources, tarot.drawable, null)
             )
             tarotItems.add(tmpTarot)
@@ -52,7 +51,6 @@ class MainFragment : Fragment() {
                 viewpager,
                 TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                     tab.text = tarotItems[position].numTitle.toString()
-                    Log.d("-----------------" , tab.text.toString())
                 }
             ).attach()
         }
