@@ -1,7 +1,6 @@
 package com.bluewind.tarotsearchapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +51,6 @@ class MainFragment : Fragment() {
                 viewpager,
                 TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                     tab.text = tarotItems[position].numTitle.toString()
-                    Log.d("-----------------", tab.text.toString())
                 }
             ).attach()
         }
