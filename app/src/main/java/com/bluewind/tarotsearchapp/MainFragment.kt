@@ -1,17 +1,14 @@
 package com.bluewind.tarotsearchapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.bluewind.tarotsearchapp.databinding.MainFragmentBinding
 import com.bluewind.tarotsearchapp.enum.TarotEnum
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlin.random.Random
 
 class MainFragment : Fragment() {
     companion object {
