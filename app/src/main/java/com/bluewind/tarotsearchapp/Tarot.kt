@@ -16,7 +16,7 @@ data class Tarot(
     val numTitle: String,
     val uprightInfo: String,
     val reverseInfo: String,
-    val drawable: Drawable?
+    val drawable: Int
 ) {
     fun showModal(tarot: Tarot) {
         when (MyApplication.deviceRotate) {
