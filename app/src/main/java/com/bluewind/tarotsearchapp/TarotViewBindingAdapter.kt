@@ -3,7 +3,6 @@ package com.bluewind.tarotsearchapp
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 
-
 internal object TarotViewBindingAdapter {
     @JvmStatic
     @BindingAdapter("imageResource")
