@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         if (sharedPreferences.getBoolean("FirstTimeStartup", true)) {
             //ここで使い方の表示
             AlertDialog.Builder(this)
-                .setMessage("テスト用")
-                .setTitle("テスト用")
+                .setTitle("使い方")
+                .setMessage("このアプリはスマートフォン・タブレットの向きを利用したアプリです。\n普通に持った状態でタロットをタップすると「正位置」の説明が\n逆向きにした状態でタロットをタップすると「逆位置」の説明が表示されます。")
                 .create()
                 .show()
 
