@@ -1,6 +1,7 @@
 package com.bluewind.tarotsearchapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class MainFragment : Fragment() {
                 numTitle = tarot.numString,
                 uprightInfo = tarot.info,
                 reverseInfo = tarot.backInfo,
-                drawable = ResourcesCompat.getDrawable(resources, tarot.drawable, null)
+                drawable = tarot.drawable
             )
             tarotItems.add(tmpTarot)
         }
