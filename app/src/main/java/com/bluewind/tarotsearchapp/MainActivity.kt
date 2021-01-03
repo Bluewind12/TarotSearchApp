@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bluewind.tarotsearchapp.readme.ReadMeViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.read_me_tab_layout.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.read_me_tab_layout.view.*
 
 
@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
                 MyApplication.deviceRotate = (orientation + 45) / 90 * 90
             }
         }
+        floatingActionButton.setOnClickListener {
+            showReadMe()
+        }
     }
 
     override fun onResume() {
@@ -43,14 +46,6 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("TarotDictionary", Context.MODE_PRIVATE)
 
         if (sharedPreferences.getBoolean("FirstTimeStartup", true)) {
-            //ここで使い方の表示
-//            AlertDialog.Builder(this)
-//                .setTitle("使い方")
-//                .setMessage("このアプリはスマートフォン・タブレットの向きを利用したアプリです。\n普通に持った状態でタロットをタップすると「正位置」の説明が\n逆向きにした状態でタロットをタップすると「逆位置」の説明が表示されます。")
-//                .create()
-//                .show()
-//
-
             val view: View = layoutInflater.inflate(R.layout.read_me_tab_layout, null)
             view.readMeViewPager.adapter = ReadMeViewPagerAdapter(supportFragmentManager, lifecycle)
             TabLayoutMediator(
@@ -62,7 +57,27 @@ class MainActivity : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setView(view)
+                .setOnDismissListener {
+                    val edit = sharedPreferences.edit()
+                    edit.putBoolean("FirstTimeStartup", false)
+                    edit.apply()
+                }
                 .show()
         }
+    }
+
+    private fun showReadMe() {
+        val view: View = layoutInflater.inflate(R.layout.read_me_tab_layout, null)
+        view.readMeViewPager.adapter = ReadMeViewPagerAdapter(supportFragmentManager, lifecycle)
+        TabLayoutMediator(
+            view.readMeTabLayout,
+            view.readMeViewPager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+            }
+        ).attach()
+
+        AlertDialog.Builder(this)
+            .setView(view)
+            .show()
     }
 }
