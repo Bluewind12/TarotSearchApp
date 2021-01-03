@@ -2,10 +2,12 @@ package com.bluewind.tarotsearchapp
 
 import android.app.AlertDialog
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import kotlinx.android.synthetic.main.tarot_info_modal_reverse.view.*
 import kotlinx.android.synthetic.main.tarot_info_modal_upright.view.*
+import kotlin.random.Random
 
 
 data class Tarot(
@@ -14,7 +16,7 @@ data class Tarot(
     val numTitle: String,
     val uprightInfo: String,
     val reverseInfo: String,
-    val drawable: Drawable?
+    val drawable: Int
 ) {
     fun showModal(tarot: Tarot) {
         when (MyApplication.deviceRotate) {
@@ -40,6 +42,16 @@ data class Tarot(
 
         val mDialog = AlertDialog.Builder(MyApplication.appActivity)
             .setView(view)
+            .setOnDismissListener {
+                if(Random.nextInt(100) <=10){
+                    if (MyApplication.appInterstitialAd!!.isLoaded) {
+                        MyApplication.appInterstitialAd!!.show()
+                    } else {
+                        Log.d("ERROR", "The interstitial wasn't loaded yet.")
+                    }
+                }
+
+            }
             .create()
 
         mDialog.show()

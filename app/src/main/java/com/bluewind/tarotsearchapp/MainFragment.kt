@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.bluewind.tarotsearchapp.databinding.MainFragmentBinding
 import com.bluewind.tarotsearchapp.enum.TarotEnum
@@ -22,7 +21,6 @@ class MainFragment : Fragment() {
     ): View? {
         val tarotItems = mutableListOf<Tarot>()
 
-
         for (tarot in TarotEnum.values()) {
             val tmpTarot = Tarot(
                 title = tarot.title,
@@ -30,7 +28,7 @@ class MainFragment : Fragment() {
                 numTitle = tarot.numString,
                 uprightInfo = tarot.info,
                 reverseInfo = tarot.backInfo,
-                drawable = ResourcesCompat.getDrawable(resources, tarot.drawable, null)
+                drawable = tarot.drawable
             )
             tarotItems.add(tmpTarot)
         }

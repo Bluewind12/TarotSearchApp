@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:name="com.bluewind.tarotsearchapp.MyApplication"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6499097800180510~4167634702"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

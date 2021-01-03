@@ -2,6 +2,7 @@ package com.bluewind.tarotsearchapp
 
 import android.app.Application
 import android.content.Context
+import com.google.android.gms.ads.InterstitialAd
 
 
 class MyApplication : Application() {
@@ -33,6 +34,14 @@ class MyApplication : Application() {
                 when (value) {
                     0, 180 -> rotate = value
                 }
+            }
+
+        //InterstitialAd
+        private var interstitialAd: InterstitialAd? = null
+        var appInterstitialAd: InterstitialAd?
+            get() = interstitialAd
+            set(value) {
+                interstitialAd = value
             }
     }
 }
