@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">TarotSearchApp</string>
+    <string name="app_name">タロット★辞典</string>
+    <string name="ex_1">このアプリはスマートフォンの\n向きを利用したアプリです！</string>
+    <string name="ex_2">スマホを普通に持った状態で\nカードをタップすると\n正位置の意味が表示されます！</string>
+    <string name="ex_3">スマホを逆向きに持った状態で\nカードタップすると\n逆位置の意味が表示されます！</string>
 </resources>

@@ -15,6 +15,6 @@ class ReadMeSecondFragment :Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.test_kayout, container, false)
+        return inflater.inflate(R.layout.readme_seccond_layout, container, false)
     }
 }
